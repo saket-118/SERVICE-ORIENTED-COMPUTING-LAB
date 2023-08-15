@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breakfast Menu</title>
+</head>
+<body>
+    <h1>Breakfast Menu</h1>
+    <label for="menu">Please select an option to display information about them:</label>
+    <select id="menu" onchange="displayFoodInfo()">
+        <option value="default">Select an option</option>
+        <option value="belgian_waffles">Belgian Waffles</option>
+        <option value="strawberry_waffles">Strawberry Belgian Waffles</option>
+        <option value="berry_waffles">Berry-Berry Belgian Waffles</option>
+        <option value="french_toast">French Toast</option>
+        <option value="homestyle_breakfast">Homestyle Breakfast</option>
+    </select>
+
+    <div id="foodInfo">
+        <!-- Food information will be displayed here -->
+    </div>
+
+    <script>
+        const foodData = {
+            belgian_waffles: {
+                name: "Belgian Waffles",
+                price: "$5.95",
+                description: "Two of our famous Belgian Waffles with plenty of real maple syrup",
+                calories: 650
+            },
+            strawberry_waffles: {
+                name: "Strawberry Belgian Waffles",
+                price: "$7.95",
+                description: "Light Belgian waffles covered with strawberries and whipped cream",
+                calories: 900
+            },
+            berry_waffles: {
+                name: "Berry-Berry Belgian Waffles",
+                price: "$8.95",
+                description: "Belgian waffles covered with assorted fresh berries and whipped cream",
+                calories: 900
+            },
+            french_toast: {
+                name: "French Toast",
+                price: "$4.50",
+                description: "Thick slices made from our homemade sourdough bread",
+                calories: 600
+            },
+            homestyle_breakfast: {
+                name: "Homestyle Breakfast",
+                price: "$6.95",
+                description: "Two eggs, bacon or sausage, toast, and our ever-popular hash browns",
+                calories: 950
+            }
+        };
+
+        function displayFoodInfo() {
+            const selectedOption = document.getElementById("menu").value;
+            const foodInfoContainer = document.getElementById("foodInfo");
+
+            if (selectedOption !== "default") {
+                const food = foodData[selectedOption];
+                const foodInfoHTML = `
+                    <h2>${food.name}</h2>
+                    <p><strong>Price:</strong> ${food.price}</p>
+                    <p><strong>Description:</strong> ${food.description}</p>
+                    <p><strong>Calories:</strong> ${food.calories}</p>
+                `;
+                foodInfoContainer.innerHTML = foodInfoHTML;
+            } else {
+                foodInfoContainer.innerHTML = "";
+            }
+        }
+    </script>
+</body>
+</html>
